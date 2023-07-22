@@ -8,6 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IDBRepository, DBRepository>();
+builder.Services.AddAuthentication("Cookie")
+    .AddCookie("Cookie", config => {
+        config.LoginPath = "/Login";
+        config.LogoutPath = "/Logout";
+    });
+builder.Services.AddAuthorization();
 builder.Services.AddControllersWithViews();
 
 
@@ -26,6 +32,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

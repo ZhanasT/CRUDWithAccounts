@@ -22,4 +22,14 @@ public class DBRepository : IDBRepository
     {
         return await db.Disks.Where(disk => disk.Type == type).ToListAsync();
     }
+    public async Task<Account?> FindAccount(string username, string password)
+    {
+        return await db.Accounts.FirstOrDefaultAsync(account => account.Login == username & account.Password == password);
+    }
+        
+    public async Task AddAccount(Account account)
+    {
+        await db.Accounts.AddAsync(account);
+        await db.SaveChangesAsync();
+    }
 }

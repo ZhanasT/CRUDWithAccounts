@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using CRUDWithAccounts.Models;
 using CRUDWithAccounts.Database;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CRUDWithAccounts.Controllers;
 
@@ -16,10 +17,11 @@ public class HomeController : Controller
         repository = _repository;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(string? username)
     {
-        return View();
+        return View(username);
     }
+
 
     public async Task<IActionResult> Catalog()
     {
