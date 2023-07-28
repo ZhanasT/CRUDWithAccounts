@@ -1,0 +1,7 @@
+@{
+    ViewData["Title"] = "User Page";
+}
+
+<h1>@User.FindFirst("Role").Value @User.Identity.Name</h1>
+
+<a asp-controller="AdminPage" asp-action="AddDiskPage">Добавить диск на сайт</a>

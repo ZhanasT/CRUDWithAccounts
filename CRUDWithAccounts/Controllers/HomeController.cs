@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using CRUDWithAccounts.Models;
-using CRUDWithAccounts.Database;
+using Database;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CRUDWithAccounts.Controllers;
@@ -25,7 +25,8 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Catalog()
     {
-        return View(await repository.GetAllDisks());
+        var list = await repository.GetAllDisksAsync();
+        return View(list);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

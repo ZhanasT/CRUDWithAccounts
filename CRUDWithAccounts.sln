@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUDWithAccounts", "CRUDWithAccounts\CRUDWithAccounts.csproj", "{2D9C7B6D-8652-4405-98DB-F25198070A82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{6DA21712-63B8-47C6-9E19-12AE33EEA959}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCartAPI", "ShoppingCartAPI\ShoppingCartAPI.csproj", "{6137A7B3-9284-49F7-9E29-DA95B5356F71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{2D9C7B6D-8652-4405-98DB-F25198070A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D9C7B6D-8652-4405-98DB-F25198070A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D9C7B6D-8652-4405-98DB-F25198070A82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DA21712-63B8-47C6-9E19-12AE33EEA959}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DA21712-63B8-47C6-9E19-12AE33EEA959}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DA21712-63B8-47C6-9E19-12AE33EEA959}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DA21712-63B8-47C6-9E19-12AE33EEA959}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6137A7B3-9284-49F7-9E29-DA95B5356F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6137A7B3-9284-49F7-9E29-DA95B5356F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6137A7B3-9284-49F7-9E29-DA95B5356F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6137A7B3-9284-49F7-9E29-DA95B5356F71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

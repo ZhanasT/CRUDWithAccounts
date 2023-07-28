@@ -1,6 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Catalog";
 }
+@section Scripts {
+    <script>
+        async function addToCart(diskId) {
+            var response = await fetch(`https://localhost:7098/ShoppingCartAPI/AddToShoppingCart?diskId=${diskId}&username=@User.Identity.Name`);
+            if (response.status == 200) {
+                document.getElementById("addToCartButton-"+diskId);
+            }
+        }
+    </script>
+}
 
 <h1>@ViewData["Title"]</h1>
 <table class="table table-bordered">
@@ -15,7 +25,12 @@
             <td>@disk.ReadSpeed</td>
             <td>@disk.WriteSpeed</td>
             <td>@disk.Cost</td>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td><button class="button" onclick=addToCart(@disk.Id) id="addToCartButton-@disk.Id">Добавить в корзину</button></td>
+            }
         </tr>
     }
 </table>
+
 

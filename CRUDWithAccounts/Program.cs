@@ -1,13 +1,18 @@
-using CRUDWithAccounts.Database;
+using Database;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<DataContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<IDBRepository, DBRepository>();
+
+
+builder.Services.AddDbContext<DataContext>(options => {
+    options.UseSqlite();
+});
+
+builder.Services.AddTransient<IDBRepository, DBRepository>();
+
 builder.Services.AddAuthentication("Cookie")
     .AddCookie("Cookie", config => {
         config.LoginPath = "/Login";
@@ -15,6 +20,7 @@ builder.Services.AddAuthentication("Cookie")
     });
 builder.Services.AddAuthorization();
 builder.Services.AddControllersWithViews();
+
 
 
 var app = builder.Build();
@@ -38,5 +44,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+Console.WriteLine("CRUD Running");
 
 app.Run();

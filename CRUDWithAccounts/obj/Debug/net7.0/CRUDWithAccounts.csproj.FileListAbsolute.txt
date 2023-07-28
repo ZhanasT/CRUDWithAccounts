@@ -66,3 +66,5 @@ D:\Zhanas\CRUDWithAccounts\CRUDWithAccounts\bin\Debug\net7.0\runtimes\win-arm\na
 D:\Zhanas\CRUDWithAccounts\CRUDWithAccounts\bin\Debug\net7.0\runtimes\win-arm64\native\e_sqlite3.dll
 D:\Zhanas\CRUDWithAccounts\CRUDWithAccounts\bin\Debug\net7.0\runtimes\win-x64\native\e_sqlite3.dll
 D:\Zhanas\CRUDWithAccounts\CRUDWithAccounts\bin\Debug\net7.0\runtimes\win-x86\native\e_sqlite3.dll
+D:\Zhanas\CRUDWithAccounts\CRUDWithAccounts\bin\Debug\net7.0\Database.dll
+D:\Zhanas\CRUDWithAccounts\CRUDWithAccounts\bin\Debug\net7.0\Database.pdb

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using CRUDWithAccounts.Database;
-using CRUDWithAccounts.Database.Entity;
+using Database;
+using Database.Entity;
+using Database.Enum;
 using CRUDWithAccounts.ViewModels;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
@@ -33,13 +34,13 @@ public class AccountController : Controller
             return View();
         }
 
-        var foundAccount = await repository.FindAccount(model.Username, HashPasswordHelper.HashPassword(model.Password));
+        var foundAccount = await repository.FindAccountAsync(model.Username, HashPasswordHelper.HashPassword(model.Password));
 
         if (foundAccount is not null)
         {
             if (foundAccount.Login == model.Username && foundAccount.Password == HashPasswordHelper.HashPassword(model.Password))
             {
-                return await customLogin(model.Username);
+                return await customLogin(model.Username, foundAccount.Role);
             }
             else
             {
@@ -53,8 +54,8 @@ public class AccountController : Controller
                 Password = HashPasswordHelper.HashPassword(model.Password),
                 Role = Database.Enum.Role.User
             };
-            await repository.AddAccount(accountToAdd);
-            return await customLogin(model.Username);
+            await repository.AddAccountAsync(accountToAdd);
+            return await customLogin(model.Username, Role.User);
         }
         
     }
@@ -65,11 +66,12 @@ public class AccountController : Controller
         return Redirect("/");
     }
 
-    private async Task<IActionResult> customLogin(string username)
+    private async Task<IActionResult> customLogin(string username, Role role)
     {
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, username)
+            new Claim(ClaimTypes.Name, username),
+            new Claim(ClaimTypes.Role, role.ToString())
         };
         var claimIdentity = new ClaimsIdentity(claims, "Cookie");
         var claimPrincipal = new ClaimsPrincipal(claimIdentity);
