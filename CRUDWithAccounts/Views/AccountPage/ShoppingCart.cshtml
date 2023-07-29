@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<table class="table table-bordered">
+    @foreach (var disk in Model)
+    {
+        <tr> 
+            <td>@disk.Manufacturer</td>
+            <td>@disk.Model</td>
+            <td>@disk.Type</td>
+            <td>@disk.Capacity</td>
+            <td>@disk.ReadSpeed</td>
+            <td>@disk.WriteSpeed</td>
+            <td>@disk.Cost</td>
+        </tr>
+    }
+</table>

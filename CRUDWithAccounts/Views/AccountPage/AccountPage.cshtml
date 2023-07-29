@@ -2,6 +2,6 @@
     ViewData["Title"] = "User Page";
 }
 
-<h1>@User.FindFirst("Role").Value @User.Identity.Name</h1>
+<h1>@Model.Role @Model.Username</h1>
 
-<a asp-controller="AdminPage" asp-action="AddDiskPage">Добавить диск на сайт</a>
+<a asp-controller="AccountPage" asp-action="ShoppingCart">Корзина</a>

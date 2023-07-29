@@ -32,9 +32,9 @@ public class DBRepository : IDBRepository
         await db.Accounts.AddAsync(account);
         await db.SaveChangesAsync();
     }
-    public async Task<List<SelectedDisk>> GetShoppingCartAsync(string username)
+    public async Task<List<Disk>> GetShoppingCartAsync(string username)
     {
-        return await db.SelectedDisks.Include(sd => sd.disk).Where(sd => sd.account.Login == username).ToListAsync();
+        return await db.SelectedDisks.Include(sd => sd.disk).Where(sd => sd.account.Login == username).Select(sd => sd.disk).ToListAsync();
     }
     public async Task AddToShoppingCartAsync(int diskId, string username)
     {

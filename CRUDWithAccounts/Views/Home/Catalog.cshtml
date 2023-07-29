@@ -3,10 +3,20 @@
 }
 @section Scripts {
     <script>
-        async function addToCart(diskId) {
-            var response = await fetch(`https://localhost:7098/ShoppingCartAPI/AddToShoppingCart?diskId=${diskId}&username=@User.Identity.Name`);
+        async function addToCart(_diskId) {
+            let params = {
+                diskId: _diskId,
+                username: '@User.Identity.Name'
+            };
+            var response = await fetch(`https://localhost:7091/api/ShoppingCartAPI/AddToShoppingCart/${_diskId}/@User.Identity.Name`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=urf-8'
+                },
+                body: JSON.stringify(params)
+            });
             if (response.status == 200) {
-                document.getElementById("addToCartButton-"+diskId);
+                document.getElementById("addToCartButton-"+_diskId).innerText = "✓";
             }
         }
     </script>
