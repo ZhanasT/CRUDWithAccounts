@@ -5,7 +5,7 @@
             "name": "CRUD & ShoppingCartAPI",
             "configurations": [
                 ".NET Core Launch (web) CRUD",
-                ".NET Core Launch (web) ShoppingCart"
+                ".NET Core Launch (web) ShoppingCartAPI"
             ],
             "stopAll": true
         }
@@ -49,7 +49,7 @@
             // Use IntelliSense to find out which attributes exist for C# debugging
             // Use hover for the description of the existing attributes
             // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
-            "name": ".NET Core Launch (web) ShoppingCart",
+            "name": ".NET Core Launch (web) ShoppingCartAPI",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",

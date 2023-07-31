@@ -3,16 +3,44 @@
 }
 
 <table class="table table-bordered">
-    @foreach (var disk in Model)
-    {
-        <tr> 
-            <td>@disk.Manufacturer</td>
-            <td>@disk.Model</td>
-            <td>@disk.Type</td>
-            <td>@disk.Capacity</td>
-            <td>@disk.ReadSpeed</td>
-            <td>@disk.WriteSpeed</td>
-            <td>@disk.Cost</td>
-        </tr>
+    @{
+        int totalPrice = 0;
+        @foreach (var disk in Model)
+        {
+            <tr> 
+                <td>@disk.Manufacturer</td>
+                <td>@disk.Model</td>
+                <td>@disk.Type</td>
+                <td>@disk.Capacity</td>
+                <td>@disk.ReadSpeed</td>
+                <td>@disk.WriteSpeed</td>
+                <td>@disk.Cost</td>
+                <td><button class="button" onclick=deleteFromCart(@disk.Id) id="deleteFromCartButton-@disk.Id">Удалить из корзины</button></td>
+            </tr>
+            totalPrice += disk.Cost;
+        }
+        <span>Итоговая цена: @totalPrice тенге</span>
     }
+    
 </table>
+
+@section Scripts {
+    <script>
+        async function deleteFromCart(_diskId) {
+            let params = {
+                diskId: _diskId,
+                username: '@User.Identity.Name'
+            };
+            var response = await fetch(`https://localhost:7091/api/ShoppingCartAPI/DeleteFromShoppingCart/@User.Identity.Name/${_diskId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json;charset=urf-8'
+                },
+                body: JSON.stringify(params)
+            });
+            if (response.status == 200) {
+                document.getElementById("deleteFromCartButton-"+_diskId).innerText = "✓";
+            }
+        }
+    </script>
+}

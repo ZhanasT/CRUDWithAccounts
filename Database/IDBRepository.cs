@@ -11,4 +11,7 @@ public interface IDBRepository
     public Task AddAccountAsync(Account account);
     public Task<List<Disk>> GetShoppingCartAsync(string username);
     public Task AddToShoppingCartAsync(int diskId, string username);
+    public Task DeleteFromShoppingCartAsync(string username, int diskId);
+    public Task AddDiskAsync(Disk diskToAdd);
+    public Task DeleteDiskAsync(Disk diskToDelete);
 }

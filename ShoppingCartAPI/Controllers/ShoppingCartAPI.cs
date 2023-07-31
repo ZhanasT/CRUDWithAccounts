@@ -24,4 +24,10 @@ public class ShoppingCartAPI : ControllerBase
         var disks = await repository.GetShoppingCartAsync(username);
         return Ok(disks);
     }
+    [HttpDelete("{username}/{diskId}")]
+    public async Task<IActionResult> DeleteFromShoppingCart(string username, int diskId)
+    {
+        await repository.DeleteFromShoppingCartAsync(username, diskId);
+        return Ok();
+    }
 }

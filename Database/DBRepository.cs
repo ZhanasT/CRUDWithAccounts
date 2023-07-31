@@ -52,4 +52,23 @@ public class DBRepository : IDBRepository
         await db.SelectedDisks.AddAsync(selectedDisk);
         await db.SaveChangesAsync();
     }
+    public async Task DeleteFromShoppingCartAsync(string username, int diskId)
+    {
+        var selectedDiskToRemove = await db.SelectedDisks
+            .Include(sd => sd.disk)
+            .Include(sd => sd.account)
+            .Where(sd => sd.disk.Id == diskId && sd.account.Login == username).FirstOrDefaultAsync();
+        db.SelectedDisks.Remove(selectedDiskToRemove);
+        await db.SaveChangesAsync();
+    }
+    public async Task AddDiskAsync(Disk diskToAdd)
+    {
+        await db.Disks.AddAsync(diskToAdd);
+        await db.SaveChangesAsync();
+    }
+    public async Task DeleteDiskAsync(Disk diskToDelete)
+    {
+        db.Disks.Remove(diskToDelete);
+        await db.SaveChangesAsync();
+    }
 }
