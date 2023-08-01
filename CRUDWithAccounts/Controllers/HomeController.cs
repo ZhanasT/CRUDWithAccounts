@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using CRUDWithAccounts.Models;
 using Database;
@@ -26,6 +27,14 @@ public class HomeController : Controller
     public async Task<IActionResult> Catalog()
     {
         var list = await repository.GetAllDisksAsync();
+        if (User.Identity.IsAuthenticated)
+        {
+            ViewData["Usename"] = User.Identity.Name;
+            var claims = ((ClaimsIdentity)User.Identity).Claims;
+            string role = claims.Where(claim => claim.Type.Split('/').LastOrDefault() == "role").FirstOrDefault().Value;
+            ViewData["Role"] = role;
+        }
+
         return View(list);
     }
 

@@ -1,0 +1,31 @@
+@model DiskViewModel
+@{
+    ViewData["Title"] = "Добавить диск";
+}
+<h1>Добавить диск в систему</h1>
+<form class="form" asp-controller="Admin" asp-action="AddDisk" method="post">
+    <div>
+        <label>Производитель</label>
+        <input type="text" asp-for="Manufacturer" class="form-control">
+        <span asp-validation-for="Manufacturer"></span>
+        <label>Модель</label>
+        <input type="Text" asp-for="Model" class="form-control">
+        <span asp-validation-for="Model"></span>
+        <label>Тип</label>
+        <input type="Text" asp-for="Type" class="form-control">
+        <span asp-validation-for="Model"></span>
+        <label>Размер памяти</label>
+        <input type="number" asp-for="Capacity" class="form-control">
+        <span asp-validation-for="Capacity"></span>
+        <label>Скорость чтения</label>
+        <input type="number" asp-for="ReadSpeed" class="form-control">
+        <span asp-validation-for="ReadSpeed"></span>
+        <label>Скорость записи</label>
+        <input type="number" asp-for="WriteSpeed" class="form-control">
+        <span asp-validation-for="WriteSpeed"></span>
+        <label>Стоимость</label>
+        <input type="number" asp-for="Cost" class="form-control">
+        <span asp-validation-for="Cost"></span>
+        <button type="submit" class="button">Добавить диск</button>
+    </div>
+</form>

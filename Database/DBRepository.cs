@@ -66,8 +66,9 @@ public class DBRepository : IDBRepository
         await db.Disks.AddAsync(diskToAdd);
         await db.SaveChangesAsync();
     }
-    public async Task DeleteDiskAsync(Disk diskToDelete)
+    public async Task DeleteDiskAsync(int diskId)
     {
+        var diskToDelete = await db.Disks.Where(disk => disk.Id == diskId).FirstOrDefaultAsync();
         db.Disks.Remove(diskToDelete);
         await db.SaveChangesAsync();
     }

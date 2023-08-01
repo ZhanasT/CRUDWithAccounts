@@ -6,7 +6,7 @@
         async function addToCart(_diskId) {
             let params = {
                 diskId: _diskId,
-                username: '@User.Identity.Name'
+                username: '@ViewData["Username"]'
             };
             var response = await fetch(`https://localhost:7091/api/ShoppingCartAPI/AddToShoppingCart/${_diskId}/@User.Identity.Name`, {
                 method: 'POST',
@@ -37,7 +37,10 @@
             <td>@disk.Cost</td>
             @if (User.Identity.IsAuthenticated)
             {
-                <td><button class="button" onclick=addToCart(@disk.Id) id="addToCartButton-@disk.Id">Добавить в корзину</button></td>
+                @if (ViewData["Role"].ToString() == "User")
+                {
+                    <td><button class="button" onclick=addToCart(@disk.Id) id="addToCartButton-@disk.Id">Добавить в корзину</button></td>
+                }
             }
         </tr>
     }

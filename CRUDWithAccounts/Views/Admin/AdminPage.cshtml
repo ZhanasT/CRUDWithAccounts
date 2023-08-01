@@ -1,0 +1,7 @@
+@{
+    ViewData["Title"] = "Страница администратора";
+}
+
+<h1>@Model.Role @Model.Username</h1>
+
+<a asp-controller="Admin" asp-action="AddDisk">Добавить диск</a>

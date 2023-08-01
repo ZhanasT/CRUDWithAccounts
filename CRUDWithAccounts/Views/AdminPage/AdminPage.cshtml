@@ -1,7 +1,0 @@
-@{
-    ViewData["Title"] = "Admin Page";
-}
-
-<h1>@User.FindFirst("Role").Value @User.Identity.Name</h1>
-
-<a asp-controller="AccountPage" asp-action="ShoppingCart">Корзина</a>
