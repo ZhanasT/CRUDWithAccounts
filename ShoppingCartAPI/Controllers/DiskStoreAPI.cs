@@ -5,7 +5,7 @@ using Database;
 namespace ShoppingCartAPI.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 public class DiskStoreAPI : ControllerBase
 {
     private IDBRepository repository;
@@ -13,13 +13,7 @@ public class DiskStoreAPI : ControllerBase
     {
         repository = _repository;
     }
-    [HttpPost]
-    public async Task<IActionResult> AddDisk(Disk diskToAdd)
-    {
-        await repository.AddDiskAsync(diskToAdd);
-        return Ok();
-    }
-    [HttpDelete]
+    [HttpDelete("{diskId}")]
     public async Task<IActionResult> DeleteDisk(int diskId)
     {
         await repository.DeleteDiskAsync(diskId);

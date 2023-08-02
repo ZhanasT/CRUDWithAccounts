@@ -1,7 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Catalog";
 }
-@section Scripts {
+@if (User.Identity.IsAuthenticated & ViewData["Role"].ToString() == "User")
+{
+    @section Scripts {
     <script>
         async function addToCart(_diskId) {
             let params = {
@@ -20,7 +22,31 @@
             }
         }
     </script>
+    }
 }
+@if (User.Identity.IsAuthenticated & ViewData["Role"].ToString() == "Admin")
+{
+    @section Scripts {
+    <script>
+        async function deleteDisk(_diskId) {
+            let params = {
+                diskId: _diskId,
+            };
+            var response = await fetch(`https://localhost:7091/api/DiskStoreAPI/DeleteDisk/${_diskId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json;charset=urf-8'
+                },
+                body: JSON.stringify(params)
+            });
+            if (response.status == 200) {
+                document.getElementById("deleteDiskButton-"+_diskId).innerText = "✓";
+            }
+        }
+    </script>
+    }
+}
+
 
 <h1>@ViewData["Title"]</h1>
 <table class="table table-bordered">
@@ -40,6 +66,10 @@
                 @if (ViewData["Role"].ToString() == "User")
                 {
                     <td><button class="button" onclick=addToCart(@disk.Id) id="addToCartButton-@disk.Id">Добавить в корзину</button></td>
+                }
+                @if (ViewData["Role"].ToString() == "Admin")
+                {
+                    <td><button class="button" onclick=deleteDisk(@disk.Id) id="deleteDiskButton-@disk.Id">Удалить диск</button></td>
                 }
             }
         </tr>

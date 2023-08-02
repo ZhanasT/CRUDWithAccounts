@@ -6,11 +6,11 @@
 <form class="form" asp-controller="Account" asp-action="Login" method="post">
     <div>
         <label>Username</label>
-        <input type="text" asp-for="Username">
+        <input type="text" asp-for="Username" class="form-control">
         <span asp-validation-for="Username"></span>
         <label>Password</label>
-        <input type="password" asp-for="Password">
+        <input type="password" asp-for="Password" class="form-control">
         <span asp-validation-for="Password"></span>
-        <button type="submit">Log In</button>
+        <button type="submit" class="btn-success">Войти</button>
     </div>
 </form>

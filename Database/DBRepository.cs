@@ -69,6 +69,11 @@ public class DBRepository : IDBRepository
     public async Task DeleteDiskAsync(int diskId)
     {
         var diskToDelete = await db.Disks.Where(disk => disk.Id == diskId).FirstOrDefaultAsync();
+        var selectedDisksToDelete = db.SelectedDisks.Include(sd => sd.disk).Where(sd => sd.disk.Id == diskId);
+        foreach (var sd in selectedDisksToDelete)
+        {
+            db.SelectedDisks.Remove(sd);
+        }
         db.Disks.Remove(diskToDelete);
         await db.SaveChangesAsync();
     }
